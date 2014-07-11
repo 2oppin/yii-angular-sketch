@@ -1,0 +1,16 @@
+RewriteEngine On
+
+#RewriteCond %{HTTPS} off
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+
+# skip js, css and img directories
+RewriteCond %{REQUEST_FILENAME} !/js/
+RewriteCond %{REQUEST_FILENAME} !/css/
+RewriteCond %{REQUEST_FILENAME} !/img/
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index.php
+RewriteRule . index.php
